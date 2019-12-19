@@ -1,0 +1,49 @@
+package main
+
+import ( "fmt"
+		 "math/rand"
+		 "time"
+)
+//猜1-100内的随机数，只有10次机会，根据输入的次数对应输出：
+func random (n int){
+	//定义一个接受机会的变量
+	var sum int
+	//for循环1-100内的随机数，判断输入的数是否等于随机数
+	for sum=1; sum <= 10;sum++ {
+	fmt.Printf("请输入您猜的数字：\n")
+	fmt.Scanln(&n)
+	if n < 0 {
+		fmt.Printf("输入的数字有误，请重新输入！")
+		continue
+	}
+	rand.Seed(time.Now().Unix())
+	num:= rand.Intn(100) + 1
+	if (n==num) {
+		break	
+	}else {
+		fmt.Printf("猜错了哦~本次的答案是%v\n",num)
+	}
+}
+	//根据循环后输入的次数进行判定
+	if (sum == 1) {
+		fmt.Printf("你真是个天才！")
+	}else if  sum<= 3 {
+		fmt.Printf("你很聪明，赶上我了！")
+	}else if sum <= 9 {
+		fmt.Printf("一般般！")
+	}else if sum == 10 {
+		fmt.Printf("可算猜对了！")
+	}else {
+		fmt.Printf("一次都没猜对，说你啥好呢！")
+		}
+		//休眠10S退出
+		time.Sleep(10 * time.Second )
+}
+
+func main() {
+	//定义一个输入值
+	var num int
+	//调用函数
+	random(num)
+	
+}
